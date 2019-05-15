@@ -3,6 +3,6 @@
 <html>
 <%@include file="layout/header.jsp"%>
 <%@include file="layout/title.jsp"%>
-<%@include file="simpleparts/form.jsp"%>
+<%@include file="simpleparts/SignUpForm.jsp"%>
 <%@include file="layout/footer.jsp"%>
 

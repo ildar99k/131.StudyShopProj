@@ -2,6 +2,7 @@ package ru.ildar99ka.servlets;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import ru.ildar99ka.DataRepository;
 import ru.ildar99ka.HibernateUtil;
 import ru.ildar99ka.exceptions.EmailExistingException;
 import ru.ildar99ka.models.User;
@@ -9,6 +10,7 @@ import ru.ildar99ka.models.User;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -35,11 +37,8 @@ public class SignUpServlet extends HttpServlet {
         resp.setContentType("text/html");
         try {
             User user=User.createUser(req);
-            Session session=HibernateUtil.getSessionFactory().openSession();
-            Transaction transaction=session.beginTransaction();
-            session.save(user);
+            DataRepository.saveObject(user);
             req.getSession().setAttribute("user",user);
-            transaction.commit();
             resp.sendRedirect("/main");
         } catch (EmailExistingException emailExistingException) {
             req.getServletContext().getRequestDispatcher("/WEB-INF/jsp/signUp.jsp").forward(req,resp);

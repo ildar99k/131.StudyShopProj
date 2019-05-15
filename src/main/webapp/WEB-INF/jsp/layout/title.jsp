@@ -14,19 +14,19 @@
         </div>
         <div class="headerButtons">
             <%User u = (User)request.getAttribute("user");%>
-        <c:set var="test" value="<%=u%>"/>
+        <c:set var="user" value="<%=u%>"/>
         <c:set var="myEmpty" value=""></c:set>
-        <c:if test="${test != null && !test.name.equals(myEmpty)}">
+        <c:if test="${user != null && !user.name.equals(myEmpty)}">
             <p>
             Здравствуйте,
-            ${test.name}
-            ${test.surname}
+            ${user.name}
+            ${user.surname}
             </p><br>
-            <a href="/login"><button class="headerButton">Выйти</button></a>
+            <a href="${pageContext.request.contextPath}/login"><button class="headerButton">Выйти</button></a>
         </c:if>
-        <c:if test="${test == null || test.name.equals(myEmpty)}">
-            <a href="/signup"><button class="headerButton">Регистрация</button></a>
-            <a href="/login"><button class="headerButton">Войти</button></a>
+        <c:if test="${user == null || user.name.equals(myEmpty)}">
+            <a href="${pageContext.request.contextPath}/signup"><button class="headerButton">Регистрация</button></a>
+            <a href="${pageContext.request.contextPath}/login"><button class="headerButton">Войти</button></a>
         </c:if>
         </div>
         </header>

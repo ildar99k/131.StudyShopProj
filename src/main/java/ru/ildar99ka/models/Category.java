@@ -12,7 +12,5 @@ import javax.persistence.*;
 @Table(name ="Category")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
     String name;
 }
